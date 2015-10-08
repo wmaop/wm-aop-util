@@ -1,10 +1,13 @@
 package org.wmaop.util.jexl;
 
+import java.util.StringTokenizer;
+
 import org.apache.commons.jexl2.JexlContext;
 import org.apache.log4j.Logger;
 
 import com.wm.data.IData;
 import com.wm.data.IDataCursor;
+import com.wm.data.IDataFactory;
 import com.wm.data.IDataUtil;
 
 public class IDataJexlContext implements JexlContext {
@@ -41,7 +44,20 @@ public class IDataJexlContext implements JexlContext {
 	}
 
 	public void set(String name, Object value) {
-		// NOOP
+		StringTokenizer st = new StringTokenizer(name, ".");
+		IData id = idata;
+		while (st.hasMoreElements()) {
+			IDataCursor idc = id.getCursor();
+			name = st.nextToken();
+			if (st.hasMoreTokens()) {
+				id = IDataFactory.create();
+				IDataUtil.put(idc, name, id);
+				idc.destroy();
+				continue;
+			}
+			IDataUtil.put(idc, name, value.toString());
+			idc.destroy();
+		}
 	}
 
 	public boolean has(String name) {

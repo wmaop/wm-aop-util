@@ -26,6 +26,20 @@ public class IDataJexlContextTest {
 		assertEquals("v21", k2.get("k21"));
 	}
 
+	@Test
+	public void shouldSetIData() {
+		IData idata = IDataFactory.create();
+		IDataJexlContext idjc = new IDataJexlContext(idata);
+		idjc.set("lorem", "ipsum");
+		idjc.set("foo.bar", "12");
+		
+		IDataCursor idc = idata.getCursor();
+		assertEquals("ipsum", IDataUtil.get(idc, "lorem"));
+		
+		IDataCursor idcf = ((IData)IDataUtil.get(idc, "foo")).getCursor();
+		assertEquals("12", IDataUtil.get(idcf, "bar"));
+	}
+	
 	private IData getIData() {
 		IData idata = IDataFactory.create();
 		IDataCursor cursor = idata.getCursor();
