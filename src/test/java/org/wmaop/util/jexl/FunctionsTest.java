@@ -11,17 +11,37 @@ public class FunctionsTest {
 
 	@Test
 	public void shouldPatternMatchWithinArray() {
-		Expression expr = JexlExpressionFactory.getEngine().createExpression("arrays:matches(values, '.*orld')");
+		Expression expr = JexlExpressionFactory.getEngine().createExpression(
+				"arrays:matches(values, '.*orld')");
 		MapContext mc = new MapContext();
-		mc.set("values", new String[]{"This","is","hello world"});
-		assertTrue((Boolean)expr.evaluate(mc));
+		mc.set("values", new String[] { "This", "is", "hello world" });
+		assertTrue((Boolean) expr.evaluate(mc));
 	}
 
 	@Test
 	public void shouldStringContainWithinArray() {
-		Expression expr = JexlExpressionFactory.getEngine().createExpression("arrays:contains(values, 'or')");
+		Expression expr = JexlExpressionFactory.getEngine().createExpression(
+				"arrays:contains(values, 'or')");
 		MapContext mc = new MapContext();
-		mc.set("values", new String[]{"This","is","hello world"});
-		assertTrue((Boolean)expr.evaluate(mc));
+		mc.set("values", new String[] { "This", "is", "hello world" });
+		assertTrue((Boolean) expr.evaluate(mc));
+	}
+
+	@Test
+	public void shouldHandleNullArrayInputForStringContain() {
+		Expression expr = JexlExpressionFactory.getEngine().createExpression(
+				"arrays:contains(values, 'or')");
+		MapContext mc = new MapContext();
+		mc.set("values", null);
+		assertNull(expr.evaluate(mc));
+	}
+
+	@Test
+	public void shouldHandleNullArrayInputForStringMatch() {
+		Expression expr = JexlExpressionFactory.getEngine().createExpression(
+				"arrays:matches(values, '.*orld')");
+		MapContext mc = new MapContext();
+		mc.set("values", null);
+		assertNull(expr.evaluate(mc));
 	}
 }
