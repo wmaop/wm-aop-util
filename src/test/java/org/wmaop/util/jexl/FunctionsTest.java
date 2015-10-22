@@ -1,9 +1,9 @@
 package org.wmaop.util.jexl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.jexl2.Expression;
-import org.apache.commons.jexl2.JexlContext;
 import org.apache.commons.jexl2.MapContext;
 import org.junit.Test;
 
