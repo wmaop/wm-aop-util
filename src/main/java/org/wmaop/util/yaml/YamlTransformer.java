@@ -1,9 +1,5 @@
 package org.wmaop.util.yaml;
 
-import java.io.InputStream;
-
-import org.wmaop.util.jexl.IDataJexlContext;
-
 import com.wm.data.IData;
 import com.wm.data.IDataCursor;
 
@@ -23,6 +19,7 @@ public class YamlTransformer {
 		while(idc.next()) {
 			String k = idc.getKey();
 			Object v = idc.getValue();
+			// TODO - Doesnt handle array notation correctly
 			if (v instanceof IData[]) {
 				append(sb, indent, k, null);
 				IData[] idataArr = ((IData[]) v);
