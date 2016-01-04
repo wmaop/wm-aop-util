@@ -7,8 +7,10 @@ import java.io.IOException;
 import org.junit.Test;
 
 import com.wm.data.IData;
+import com.wm.util.Values;
 import com.wm.util.coder.IDataXMLCoder;
 import com.wm.util.coder.InvalidDatatypeException;
+import com.wm.util.coder.JSONCoder;
 
 public class YamlTransformerTest {
 
@@ -17,5 +19,4 @@ public class YamlTransformerTest {
 		IData idata = new IDataXMLCoder().decode(this.getClass().getClassLoader().getResourceAsStream("complex.xml"));
 		System.out.println(new YamlTransformer().fromIData(idata));
 	}
-
 }
