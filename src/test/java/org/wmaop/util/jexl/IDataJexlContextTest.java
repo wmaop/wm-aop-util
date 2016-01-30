@@ -16,8 +16,8 @@ public class IDataJexlContextTest {
 	public void shouldReturnIDataValues() {
 		IDataJexlContext idjc = new IDataJexlContext(getIData());
 
-		assertTrue(idjc.has("k1"));
-		assertEquals("v1", idjc.get("k1"));
+		assertTrue(idjc.has("k__$$1"));
+		assertEquals("v1", idjc.get("k__$$1"));
 
 		assertTrue(idjc.has("k2"));
 
@@ -43,7 +43,7 @@ public class IDataJexlContextTest {
 	private IData getIData() {
 		IData idata = IDataFactory.create();
 		IDataCursor cursor = idata.getCursor();
-		IDataUtil.put(cursor, "k1", "v1");
+		IDataUtil.put(cursor, "k-1", "v1");
 
 		IData idata2 = IDataFactory.create();
 		IDataCursor cursor2 = idata2.getCursor();

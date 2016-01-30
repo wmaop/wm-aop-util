@@ -11,7 +11,7 @@ public class FunctionsTest {
 
 	@Test
 	public void shouldPatternMatchWithinArray() {
-		Expression expr = JexlExpressionFactory.getEngine().createExpression(
+		Expression expr = JexlExpressionFactory.createExpression(
 				"arrays:matches(values, '.*orld')");
 		MapContext mc = new MapContext();
 		mc.set("values", new String[] { "This", "is", "hello world" });
@@ -20,7 +20,7 @@ public class FunctionsTest {
 
 	@Test
 	public void shouldStringContainWithinArray() {
-		Expression expr = JexlExpressionFactory.getEngine().createExpression(
+		Expression expr = JexlExpressionFactory.createExpression(
 				"arrays:contains(values, 'or')");
 		MapContext mc = new MapContext();
 		mc.set("values", new String[] { "This", "is", "hello world" });
@@ -29,7 +29,7 @@ public class FunctionsTest {
 
 	@Test
 	public void shouldHandleNullArrayInputForStringContain() {
-		Expression expr = JexlExpressionFactory.getEngine().createExpression(
+		Expression expr = JexlExpressionFactory.createExpression(
 				"arrays:contains(values, 'or')");
 		MapContext mc = new MapContext();
 		mc.set("values", null);
@@ -38,7 +38,7 @@ public class FunctionsTest {
 
 	@Test
 	public void shouldHandleNullArrayInputForStringMatch() {
-		Expression expr = JexlExpressionFactory.getEngine().createExpression(
+		Expression expr = JexlExpressionFactory.createExpression(
 				"arrays:matches(values, '.*orld')");
 		MapContext mc = new MapContext();
 		mc.set("values", null);

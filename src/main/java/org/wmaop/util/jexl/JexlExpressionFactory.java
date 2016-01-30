@@ -14,16 +14,17 @@ public class JexlExpressionFactory {
 		jexlEngine.setCache(512);
 		jexlEngine.setLenient(true);
 		jexlEngine.setSilent(false);
-		
+
 		Map<String, Object> funcs = new HashMap<>();
 		funcs.put("arrays", new ArraysFunction());
-		
-		jexlEngine.setFunctions(funcs );
+
+		jexlEngine.setFunctions(funcs);
 	}
 
-	public Expression createExpression(String expr) {
-		return jexlEngine.createExpression(expr);
+	public static Expression createExpression(String expr) {
+		return jexlEngine.createExpression(ExpressionProcessor.escapedToEncoded(expr));
 	}
+
 
 	public static JexlEngine getEngine() {
 		return jexlEngine;

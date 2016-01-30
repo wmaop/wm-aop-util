@@ -20,9 +20,11 @@ public class IDataJexlContext implements JexlContext {
 	}
 
 	public Object get(String name) {
+		if (name.indexOf("__") != -1) {
+			name = ExpressionProcessor.decode(name);
+		}
 		IDataCursor cursor = idata.getCursor();
-		Object o = IDataUtil.get(cursor, name.replace('_', ':')); // Use better
-																	// escape
+		Object o = IDataUtil.get(cursor, name);
 		cursor.destroy();
 		Object ret = o;
 		try {
@@ -48,7 +50,7 @@ public class IDataJexlContext implements JexlContext {
 		IData id = idata;
 		while (st.hasMoreElements()) {
 			IDataCursor idc = id.getCursor();
-			name = st.nextToken();
+			name = ExpressionProcessor.escapedToEncoded(st.nextToken());
 			if (st.hasMoreTokens()) {
 				id = IDataFactory.create();
 				IDataUtil.put(idc, name, id);
@@ -62,7 +64,7 @@ public class IDataJexlContext implements JexlContext {
 
 	public boolean has(String name) {
 		IDataCursor cursor = idata.getCursor();
-		Object o = IDataUtil.get(cursor, name.replace('_', ':'));
+		Object o = IDataUtil.get(cursor, ExpressionProcessor.decode(name));
 		cursor.destroy();
 		return o != null;
 	}
