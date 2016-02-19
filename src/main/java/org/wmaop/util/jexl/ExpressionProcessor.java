@@ -2,7 +2,12 @@ package org.wmaop.util.jexl;
 
 public class ExpressionProcessor {
 
-	static String escapedToEncoded(String expr) {
+	static String ENC_COLON = "__col_";
+	static String ENC_HYPHEN = "__hyp_";
+	static String ENC_SPACE = "__spc_";
+	static String ENC_AT = "__att_";
+	static String ENC_ASTERISK = "__ast_";
+	public static String escapedToEncoded(String expr) {
 		int slashPos = expr.indexOf('\\');
 		if (slashPos == -1) {
 			return expr;
@@ -14,13 +19,13 @@ public class ExpressionProcessor {
 			char c = expr.charAt(slashPos + 1);
 			switch (c) {
 			case ':':
-				sb.append("___$");
+				sb.append(ENC_COLON);
 				break;
 			case '-':
-				sb.append("__$$");
+				sb.append(ENC_HYPHEN);
 				break;
 			case ' ':
-				sb.append("__$_");
+				sb.append(ENC_SPACE);
 				break;
 			default:
 				throw new RuntimeException("Invalid escaped character: " + c);
@@ -34,12 +39,12 @@ public class ExpressionProcessor {
 		return sb.toString();
 	}
 
-	static String decode(String expr) {
+	public static String decode(String expr) {
 		int undPos = expr.indexOf("__");
 		if (undPos == -1) {
 			return expr;
 		}
 		// TODO Inefficient, needs replacing as above
-		return expr.replace("___$", ":").replace("__$$", "-").replace("__$_", " ");
+		return expr.replace(ENC_COLON, ":").replace(ENC_HYPHEN, "-").replace(ENC_SPACE, " ");
 	}
 }

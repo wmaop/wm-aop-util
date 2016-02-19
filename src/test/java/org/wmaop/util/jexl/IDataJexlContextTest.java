@@ -16,8 +16,8 @@ public class IDataJexlContextTest {
 	public void shouldReturnIDataValues() {
 		IDataJexlContext idjc = new IDataJexlContext(getIData());
 
-		assertTrue(idjc.has("k__$$1"));
-		assertEquals("v1", idjc.get("k__$$1"));
+		assertTrue(idjc.has("k"+ExpressionProcessor.ENC_HYPHEN+"1"));
+		assertEquals("v1", idjc.get("k"+ExpressionProcessor.ENC_HYPHEN+"1"));
 
 		assertTrue(idjc.has("k2"));
 

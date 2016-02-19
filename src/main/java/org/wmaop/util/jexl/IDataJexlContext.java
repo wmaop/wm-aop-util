@@ -69,4 +69,7 @@ public class IDataJexlContext implements JexlContext {
 		return o != null;
 	}
 
+	public IData toIData() {
+		return idata;
+	}
 }
