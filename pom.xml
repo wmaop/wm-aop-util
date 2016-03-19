@@ -12,8 +12,8 @@
 		<version>1.0.0</version>
 	</parent>
 
-	<name>aop-util</name>
-	<url>https://bitbucket.org/sysgen/wmaop-util.git</url>
+	<name>wm-aop-util</name>
+	<url>https://github.com/wmaop/wm-aop-util</url>
 
 	<properties>
 		<jexl.version>2.1.1</jexl.version>
