@@ -8,6 +8,7 @@ import org.apache.commons.jexl2.JexlEngine;
 import org.wmaop.util.jexl.functions.ArraysFunction;
 
 public class JexlExpressionFactory {
+	
 	private static final JexlEngine jexlEngine = new JexlEngine();
 
 	static {
@@ -20,6 +21,8 @@ public class JexlExpressionFactory {
 
 		jexlEngine.setFunctions(funcs);
 	}
+
+	private JexlExpressionFactory() {}
 
 	public static Expression createExpression(String expr) {
 		return jexlEngine.createExpression(ExpressionProcessor.escapedToEncoded(expr));
