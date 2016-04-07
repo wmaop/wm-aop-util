@@ -6,11 +6,15 @@ public class ArraysFunction {
 	
 	public ArraysFunction() {}
 
-	public boolean contains(String[] arr, String regex) {
-		if (arr == null) throw new RuntimeException("Array passed to arrays:contains is null");
-		
+	public boolean contains(String[] arr, String substring) {
 		for (String v : arr) {
-			if (v.contains(regex)) return true;
+			if (substring == null) {
+				if (v == null) {
+					return true;
+				}
+			} else if (v.contains(substring)) {
+				return true;
+			}
 		}
 		return false;
 	}
