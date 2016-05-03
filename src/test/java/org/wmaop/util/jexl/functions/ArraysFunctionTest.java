@@ -3,9 +3,6 @@ package org.wmaop.util.jexl.functions;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.apache.commons.jexl2.Expression;
 import org.apache.commons.jexl2.MapContext;
 import org.junit.Test;

@@ -2,23 +2,25 @@ package org.wmaop.util.logger;
 
 import com.wm.util.JournalLogger;
 
-public class Logger<C extends Class>  {
+public class Logger {
 
 	private static final int CODE = 3;
 	private static final int FAC = JournalLogger.FAC_UTIL;
 	private static final int INFO = JournalLogger.INFO;
 	private static final int DEBUG = JournalLogger.DEBUG;
 	private static final int ERROR = JournalLogger.ERROR;
-	
-	public Logger(C clazz) {
+
+	private static final String PFX = "]>]> ";
+
+	public Logger(Class<?> clazz) {
 	}
 
-	public static <T extends Class> Logger<T> getLogger(T clazz) {
-		return new Logger<T>(clazz);
+	public static Logger getLogger(Class<?> clazz) {
+		return new Logger(clazz);
 	}
 
 	public void info(String message) {
-		JournalLogger.log(CODE, FAC, INFO, message);
+		log(INFO, message);
 	}
 
 	public boolean isDebugEnabled() {
@@ -26,11 +28,14 @@ public class Logger<C extends Class>  {
 	}
 
 	public void debug(String message) {
-		JournalLogger.log(CODE, FAC, DEBUG, message);
+		log(DEBUG, message);
 	}
 
 	public void error(String message, Exception e) {
-		JournalLogger.log(CODE, FAC, ERROR, message);
+		log(ERROR, message);
 	}
-	
+
+	void log(int level, String message) {
+		JournalLogger.log(CODE, FAC, level, PFX + message);
+	}
 }
