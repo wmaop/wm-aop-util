@@ -9,7 +9,7 @@
 	<parent>
 		<groupId>org.wmaop</groupId>
 		<artifactId>wm-parent</artifactId>
-		<version>1.0.3-SNAPSHOT</version>
+		<version>1.0.5</version>
 	</parent>
 
 	<name>wm-aop-util</name>
@@ -28,6 +28,12 @@
 		</license>
 	</licenses>
 
+	<scm>
+		<url>https://github.com/wmaop/wm-aop-util</url>
+		<connection>scm:git:git://github.com/wmaop/wm-aop-util.git</connection>
+		<developerConnection>scm:git:sysgen@github.com:wmaop/wm-aop-util.git</developerConnection>
+	</scm>
+	
 	<developers>
 		<developer>
 			<name>Richard Tomlinson</name>
@@ -37,7 +43,6 @@
 
 	<properties>
 		<jexl.version>2.1.1</jexl.version>
-		<commons-loggin.version>1.1.1</commons-loggin.version>
 	</properties>
 
 	<dependencies>
