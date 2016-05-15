@@ -30,7 +30,6 @@
 	<scm>
 		<url>https://github.com/wmaop/wm-aop-util</url>
 		<connection>scm:git:git://github.com/wmaop/wm-aop-util.git</connection>
-		<developerConnection>scm:git:sysgen@github.com:wmaop/wm-aop-util.git</developerConnection>
 	  <tag>HEAD</tag>
   </scm>
 	
