@@ -1,8 +1,6 @@
 package org.wmaop.util.pipeline;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -10,7 +8,6 @@ import com.wm.data.IData;
 import com.wm.data.IDataCursor;
 import com.wm.data.IDataFactory;
 import com.wm.data.IDataUtil;
-import com.wm.util.Values;
 
 public class StructureConverter {
 
@@ -25,23 +22,16 @@ public class StructureConverter {
 		
 	}
 
-	public IData toIData(Collection<?> col) {
-		Values values = new Values();
-		List<Object> idl = new ArrayList<>();
-		for (Object o : col) {
-			idl.add(asValue(o));
-		}
-		values.put(idl.toArray(new IData[idl.size()]));
-		return values;
-		
+	public Object[] toIData(Collection<?> col) {
+		return col.toArray(new Object[col.size()]);
 	}
-
 	
+	@SuppressWarnings("unchecked")
 	Object asValue(Object value) {
 		if (value instanceof Map) {
 			return toIData((Map<String, ?>) value);
 		} else if (value instanceof Collection) {
-			return toIData((Collection)value);
+			return toIData((Collection<?>)value);
 		}
 		return value;
 	}
