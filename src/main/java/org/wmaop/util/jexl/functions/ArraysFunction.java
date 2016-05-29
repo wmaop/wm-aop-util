@@ -4,8 +4,6 @@ import java.util.regex.Pattern;
 
 public class ArraysFunction {
 	
-	public ArraysFunction() {}
-
 	public boolean contains(String[] arr, String substring) {
 		for (String v : arr) {
 			if (substring == null) {
@@ -20,11 +18,15 @@ public class ArraysFunction {
 	}
 
 	public boolean matches(String[] arr, String regex) {
-		if (arr == null) throw new RuntimeException("Array passed to arrays:matches is null");
+		if (arr == null) {
+			throw new RuntimeException("Array passed to arrays:matches is null");
+		}
 
 		Pattern p = Pattern.compile(regex);
 		for (String v : arr) {
-			if (p.matcher(v).matches()) return true;
+			if (p.matcher(v).matches()) {
+				return true;
+			}
 		}
 		return false;
 	}
