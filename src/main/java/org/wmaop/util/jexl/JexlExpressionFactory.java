@@ -3,28 +3,25 @@ package org.wmaop.util.jexl;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.jexl2.Expression;
-import org.apache.commons.jexl2.JexlEngine;
+import org.apache.commons.jexl3.JexlBuilder;
+import org.apache.commons.jexl3.JexlEngine;
+import org.apache.commons.jexl3.JexlExpression;
 import org.wmaop.util.jexl.functions.ArraysFunction;
 
 public class JexlExpressionFactory {
 	
-	private static final JexlEngine jexlEngine = new JexlEngine();
+	private static final JexlEngine jexlEngine;
 
 	static {
-		jexlEngine.setCache(512);
-		jexlEngine.setLenient(true);
-		jexlEngine.setSilent(false);
-
 		Map<String, Object> funcs = new HashMap<>();
 		funcs.put("arrays", new ArraysFunction());
-
-		jexlEngine.setFunctions(funcs);
+		
+		jexlEngine = new JexlBuilder().cache(512).silent(false).strict(false).namespaces(funcs).create();
 	}
 
 	private JexlExpressionFactory() {}
 
-	public static Expression createExpression(String expr) {
+	public static JexlExpression createExpression(String expr) {
 		return jexlEngine.createExpression(ExpressionProcessor.escapedToEncoded(expr));
 	}
 

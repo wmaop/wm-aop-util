@@ -2,7 +2,7 @@ package org.wmaop.util.jexl;
 
 import java.util.StringTokenizer;
 
-import org.apache.commons.jexl2.JexlContext;
+import org.apache.commons.jexl3.JexlContext;
 import org.apache.log4j.Logger;
 
 import com.wm.data.IData;

@@ -2,7 +2,7 @@ package org.wmaop.util.jexl;
 
 import static org.junit.Assert.*;
 
-import org.apache.commons.jexl2.Expression;
+import org.apache.commons.jexl3.JexlExpression;
 import org.junit.Test;
 
 import com.wm.data.IData;
@@ -14,7 +14,7 @@ public class JexlExpressionFactoryTest {
 
 	@Test
 	public void testDotNotation() {
-		Expression expr = JexlExpressionFactory.createExpression("alpha.beta == \"hello\"");
+		JexlExpression expr = JexlExpressionFactory.createExpression("alpha.beta == \"hello\"");
 		IData alpha = IDataFactory.create();
 		put(alpha, "beta", "goodbye");
 		IData idata = IDataFactory.create();
@@ -28,7 +28,7 @@ public class JexlExpressionFactoryTest {
 
 	@Test
 	public void shouldMatchPipeline() throws Exception {
-		Expression expr = JexlExpressionFactory.createExpression("foo == 2");
+		JexlExpression expr = JexlExpressionFactory.createExpression("foo == 2");
 		IData idata = IDataFactory.create();
 		Boolean result = (Boolean) expr.evaluate(new IDataJexlContext(idata));
 		assertFalse(result);
@@ -60,7 +60,7 @@ public class JexlExpressionFactoryTest {
 	}
 
 	void testExpression(String expression, String varName, String varValue) {
-		Expression expr = JexlExpressionFactory.createExpression(expression);
+		JexlExpression expr = JexlExpressionFactory.createExpression(expression);
 		IData idata = IDataFactory.create();
 		Boolean result = (Boolean) expr.evaluate(new IDataJexlContext(idata));
 		assertFalse(result);
