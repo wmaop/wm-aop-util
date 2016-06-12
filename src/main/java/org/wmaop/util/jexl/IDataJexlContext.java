@@ -3,7 +3,7 @@ package org.wmaop.util.jexl;
 import java.util.StringTokenizer;
 
 import org.apache.commons.jexl3.JexlContext;
-import org.apache.log4j.Logger;
+import org.wmaop.util.logger.Logger;
 
 import com.wm.data.IData;
 import com.wm.data.IDataCursor;
@@ -19,17 +19,16 @@ public class IDataJexlContext implements JexlContext {
 		this.idata = idata;
 	}
 
+	@Override
 	public Object get(String name) {
-		if (name.indexOf("__") != -1) {
-			name = ExpressionProcessor.decode(name);
-		}
+		String decodedName = name.indexOf("__") == -1 ? name : ExpressionProcessor.decode(name);
 		IDataCursor cursor = idata.getCursor();
-		Object o = IDataUtil.get(cursor, name);
+		Object o = IDataUtil.get(cursor, decodedName);
 		cursor.destroy();
 		Object ret = o;
 		try {
 			if (o instanceof IData[]) {
-				IData[] idataArr = ((IData[]) o);
+				IData[] idataArr = (IData[]) o;
 				IDataJexlContext[] arr = new IDataJexlContext[idataArr.length];
 				for (int i = 0; i < idataArr.length; i++) {
 					arr[i] = new IDataJexlContext(idataArr[i]);
@@ -39,29 +38,31 @@ public class IDataJexlContext implements JexlContext {
 				ret = new IDataJexlContext((IData) o);
 			}
 		} catch (Exception e) {
-			logger.error("Error evaluating: " + name, e);
-			throw new RuntimeException(e);
+			logger.error("Error evaluating: " + decodedName, e);
+			throw new JexlParsingException("Error evaluating: " + decodedName, e);
 		}
 		return ret;
 	}
 
+	@Override
 	public void set(String name, Object value) {
 		StringTokenizer st = new StringTokenizer(name, ".");
 		IData id = idata;
 		while (st.hasMoreElements()) {
 			IDataCursor idc = id.getCursor();
-			name = ExpressionProcessor.escapedToEncoded(st.nextToken());
+			String encodedName = ExpressionProcessor.escapedToEncoded(st.nextToken());
 			if (st.hasMoreTokens()) {
 				id = IDataFactory.create();
-				IDataUtil.put(idc, name, id);
+				IDataUtil.put(idc, encodedName, id);
 				idc.destroy();
 				continue;
 			}
-			IDataUtil.put(idc, name, value.toString());
+			IDataUtil.put(idc, encodedName, value.toString());
 			idc.destroy();
 		}
 	}
 
+	@Override
 	public boolean has(String name) {
 		IDataCursor cursor = idata.getCursor();
 		Object o = IDataUtil.get(cursor, ExpressionProcessor.decode(name));

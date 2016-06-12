@@ -1,41 +1,22 @@
 package org.wmaop.util.logger;
 
-import com.wm.util.JournalLogger;
+import org.apache.log4j.Level;
 
-public class Logger {
-
-	private static final int CODE = 3;
-	private static final int FAC = JournalLogger.FAC_UTIL;
-	private static final int INFO = JournalLogger.INFO;
-	private static final int DEBUG = JournalLogger.DEBUG;
-	private static final int ERROR = JournalLogger.ERROR;
-
-	private static final String PFX = "]>]> ";
-
-	public Logger(Class<?> clazz) {
-	}
+public abstract class Logger {
 
 	public static Logger getLogger(Class<?> clazz) {
-		return new Logger(clazz);
+		return new Log4jLogger(clazz);  // Fixed until WmLogger produces correct output	
 	}
 
-	public void info(String message) {
-		log(INFO, message);
-	}
+	public abstract void info(String message);
 
-	public boolean isDebugEnabled() {
-		return JournalLogger.isLogEnabled(CODE, FAC, DEBUG);
-	}
+	public abstract boolean isDebugEnabled();
 
-	public void debug(String message) {
-		log(DEBUG, message);
-	}
+	public abstract void debug(String message);
 
-	public void error(String message, Exception e) {
-		log(ERROR, message);
-	}
+	public abstract void error(String message, Exception e);
 
-	void log(int level, String message) {
-		JournalLogger.log(CODE, FAC, level, PFX + message);
-	}
+	public abstract void log(Level level, String message);
+
+	public abstract void warn(String message);
 }
