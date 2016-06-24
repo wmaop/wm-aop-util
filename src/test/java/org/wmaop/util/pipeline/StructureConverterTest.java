@@ -16,6 +16,12 @@ import com.wm.data.IDataUtil;
 public class StructureConverterTest {
 
 	@Test
+	public void shouldHandleEmpty() {
+		Map<String, Object> m = new HashMap<>();
+		IData idata = new StructureConverter().toIData(m);
+	}
+	
+	@Test
 	public void shouldConvertMap() {
 		Map<String, Object> m = new HashMap<>();
 		m.put("alpha", 1);
