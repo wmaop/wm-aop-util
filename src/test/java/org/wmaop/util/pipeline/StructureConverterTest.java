@@ -1,6 +1,6 @@
 package org.wmaop.util.pipeline;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +19,7 @@ public class StructureConverterTest {
 	public void shouldHandleEmpty() {
 		Map<String, Object> m = new HashMap<>();
 		IData idata = new StructureConverter().toIData(m);
+		assertFalse(idata.getCursor().next());
 	}
 	
 	@Test

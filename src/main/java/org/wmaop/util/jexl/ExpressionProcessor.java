@@ -2,16 +2,20 @@ package org.wmaop.util.jexl;
 
 public class ExpressionProcessor {
 
+	private static final char BACKSLASH = '\\';
+	
 	static String ENC_COLON = "__col_";
 	static String ENC_HYPHEN = "__hyp_";
 	static String ENC_SPACE = "__spc_";
 	static String ENC_AT = "__att_";
 	static String ENC_ASTERISK = "__ast_";
+	
 	public static String escapedToEncoded(String expr) {
-		int slashPos = expr.indexOf('\\');
+		int slashPos = expr.indexOf(BACKSLASH);
 		if (slashPos == -1) {
 			return expr;
 		}
+		
 		StringBuilder sb = new StringBuilder();
 		int lastSlash = -1;
 		while (slashPos != -1) {
@@ -31,7 +35,7 @@ public class ExpressionProcessor {
 				throw new RuntimeException("Invalid escaped character: " + c);
 			}
 			lastSlash = ++slashPos;
-			slashPos = expr.indexOf('\\', lastSlash + 1);
+			slashPos = expr.indexOf(BACKSLASH, lastSlash + 1);
 		}
 		if (lastSlash + 1  < expr.length()) {
 			sb.append(expr.substring(lastSlash + 1));
