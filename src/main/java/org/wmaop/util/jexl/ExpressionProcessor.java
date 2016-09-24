@@ -9,6 +9,8 @@ public class ExpressionProcessor {
 	static String ENC_SPACE = "__spc_";
 	static String ENC_AT = "__att_";
 	static String ENC_ASTERISK = "__ast_";
+
+	private ExpressionProcessor() {}
 	
 	public static String escapedToEncoded(String expr) {
 		int slashPos = expr.indexOf(BACKSLASH);
@@ -32,7 +34,7 @@ public class ExpressionProcessor {
 				sb.append(ENC_SPACE);
 				break;
 			default:
-				throw new RuntimeException("Invalid escaped character: " + c);
+				throw new ExpressionProcessingException("Invalid escaped character: " + c);
 			}
 			lastSlash = ++slashPos;
 			slashPos = expr.indexOf(BACKSLASH, lastSlash + 1);
