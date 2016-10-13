@@ -19,7 +19,7 @@ public class ArraysFunction {
 
 	public boolean matches(String[] arr, String regex) {
 		if (arr == null) {
-			throw new RuntimeException("Array passed to arrays:matches is null");
+			throw new JexlFunctionException("Array passed to arrays:matches is null");
 		}
 
 		Pattern p = Pattern.compile(regex);

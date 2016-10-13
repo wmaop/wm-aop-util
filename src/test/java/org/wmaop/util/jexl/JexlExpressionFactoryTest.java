@@ -59,7 +59,7 @@ public class JexlExpressionFactoryTest {
 		
 	}
 
-	void testExpression(String expression, String varName, String varValue) {
+	private void testExpression(String expression, String varName, String varValue) {
 		JexlExpression expr = JexlExpressionFactory.createExpression(expression);
 		IData idata = IDataFactory.create();
 		Boolean result = (Boolean) expr.evaluate(new IDataJexlContext(idata));
@@ -69,7 +69,7 @@ public class JexlExpressionFactoryTest {
 		assertTrue(result);
 	}
 	
-	void put(IData idata, String k, Object v) {
+	private void put(IData idata, String k, Object v) {
 		IDataCursor cursor = idata.getCursor();
 		IDataUtil.put(cursor, k, v);
 		cursor.destroy();

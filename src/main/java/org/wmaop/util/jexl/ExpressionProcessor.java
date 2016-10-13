@@ -4,11 +4,9 @@ public class ExpressionProcessor {
 
 	private static final char BACKSLASH = '\\';
 	
-	static String ENC_COLON = "__col_";
-	static String ENC_HYPHEN = "__hyp_";
-	static String ENC_SPACE = "__spc_";
-	static String ENC_AT = "__att_";
-	static String ENC_ASTERISK = "__ast_";
+	protected static String ENC_COLON = "__col_";
+	protected static String ENC_HYPHEN = "__hyp_";
+	protected static String ENC_SPACE = "__spc_";
 
 	private ExpressionProcessor() {}
 	
@@ -50,7 +48,7 @@ public class ExpressionProcessor {
 		if (undPos == -1) {
 			return expr;
 		}
-		// TODO Inefficient, needs replacing as above
+		// Inefficient, will replace as above
 		return expr.replace(ENC_COLON, ":").replace(ENC_HYPHEN, "-").replace(ENC_SPACE, " ");
 	}
 }

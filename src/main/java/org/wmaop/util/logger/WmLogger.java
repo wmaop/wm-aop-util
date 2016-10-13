@@ -12,9 +12,6 @@ public class WmLogger {
 
 	private static final String PFX = "]>]> ";
 
-	public WmLogger(Class<?> clazz) {
-	}
-
 	public void info(String message) {
 		log(JournalLogger.INFO, message);
 	}
@@ -31,7 +28,7 @@ public class WmLogger {
 		JournalLogger.log(CODE, FAC, JournalLogger.ERROR, PFX + message, e);
 	}
 
-	void log(int level, String message) {
+	private void log(int level, String message) {
 		JournalLogger.log(CODE, FAC, level, PFX + message);
 	}
 

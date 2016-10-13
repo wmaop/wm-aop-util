@@ -27,7 +27,7 @@ public class StructureConverter {
 	}
 	
 	@SuppressWarnings("unchecked")
-	Object asValue(Object value) {
+	private Object asValue(Object value) {
 		if (value instanceof Map) {
 			return toIData((Map<String, ?>) value);
 		} else if (value instanceof Collection) {
