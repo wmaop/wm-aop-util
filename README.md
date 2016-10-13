@@ -1,5 +1,5 @@
 # wm-aop-util
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/84c7f92c43a548659bb10db95dd28060)](https://www.codacy.com/app/sysgen/wm-aop-util?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=wmaop/wm-aop-util&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/84c7f92c43a548659bb10db95dd28060)](https://www.codacy.com/app/sysgen/wm-aop-util?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=wmaop/wm-aop-util&amp;utm_campaign=Badge_Grade) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Utility services to support mocking and testing within webMethods Designer and Integration Server.
 
