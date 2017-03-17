@@ -4,9 +4,9 @@ public class ExpressionProcessor {
 
 	private static final char BACKSLASH = '\\';
 	
-	protected static String ENC_COLON = "__col_";
-	protected static String ENC_HYPHEN = "__hyp_";
-	protected static String ENC_SPACE = "__spc_";
+	protected static final String ENC_COLON = "__col_";
+	protected static final String ENC_HYPHEN = "__hyp_";
+	protected static final String ENC_SPACE = "__spc_";
 
 	private ExpressionProcessor() {}
 	

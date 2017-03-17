@@ -13,15 +13,16 @@ import com.wm.data.IDataUtil;
 public class JexlExpressionFactoryTest {
 
 	@Test
-	public void testDotNotation() {
+	public void shouldRetrieveFromSubData() {
 		JexlExpression expr = JexlExpressionFactory.createExpression("alpha.beta == \"hello\"");
 		IData alpha = IDataFactory.create();
-		put(alpha, "beta", "goodbye");
+		putWithinIData(alpha, "beta", "goodbye");
 		IData idata = IDataFactory.create();
-		put(idata, "alpha", alpha);
+		putWithinIData(idata, "alpha", alpha);
 		Boolean result = (Boolean) expr.evaluate(new IDataJexlContext(idata));
 		assertFalse(result);
-		put(alpha, "beta", "hello");
+		
+		putWithinIData(alpha, "beta", "hello");
 		result = (Boolean) expr.evaluate(new IDataJexlContext(idata));
 		assertTrue(result);
 	}
@@ -32,16 +33,16 @@ public class JexlExpressionFactoryTest {
 		IData idata = IDataFactory.create();
 		Boolean result = (Boolean) expr.evaluate(new IDataJexlContext(idata));
 		assertFalse(result);
-		put(idata, "foo", 2);
+		putWithinIData(idata, "foo", 2);
 		result = (Boolean) expr.evaluate(new IDataJexlContext(idata));
 		assertTrue(result);
-		put(idata, "foo", 1);
+		putWithinIData(idata, "foo", 1);
 		result = (Boolean) expr.evaluate(new IDataJexlContext(idata));
 		assertFalse(result);
 	}
 
 	@Test
-	public void test() {
+	public void shouldCorrectlyEvaluateEscapesWithinExpressions() {
 		testExpression("foo_2 == 2", "foo_2", "2");
 		testExpression("foo\\:3 == 3", "foo:3", "3");
 		testExpression("foo\\ 4 == 4", "foo 4", "4");
@@ -64,12 +65,12 @@ public class JexlExpressionFactoryTest {
 		IData idata = IDataFactory.create();
 		Boolean result = (Boolean) expr.evaluate(new IDataJexlContext(idata));
 		assertFalse(result);
-		put(idata, varName, varValue);
+		putWithinIData(idata, varName, varValue);
 		result = (Boolean) expr.evaluate(new IDataJexlContext(idata));
 		assertTrue(result);
 	}
 	
-	private void put(IData idata, String k, Object v) {
+	private void putWithinIData(IData idata, String k, Object v) {
 		IDataCursor cursor = idata.getCursor();
 		IDataUtil.put(cursor, k, v);
 		cursor.destroy();

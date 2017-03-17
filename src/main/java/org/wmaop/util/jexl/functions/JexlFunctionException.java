@@ -1,8 +1,10 @@
 package org.wmaop.util.jexl.functions;
 
+@SuppressWarnings("serial")
 public class JexlFunctionException extends RuntimeException {
 
 	public JexlFunctionException() {
+		super();
 	}
 
 	public JexlFunctionException(String message) {
