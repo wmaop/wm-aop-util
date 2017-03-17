@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>wm-aop-util</artifactId>
@@ -8,7 +9,7 @@
 	<parent>
 		<groupId>org.wmaop</groupId>
 		<artifactId>wm-parent</artifactId>
-		<version>1.0.5</version>
+		<version>1.0.6</version>
 	</parent>
 
 	<name>wm-aop-util</name>
@@ -31,9 +32,9 @@
 		<url>https://github.com/wmaop/wm-aop-util</url>
 		<connection>scm:git:git://github.com/wmaop/wm-aop-util.git</connection>
 		<developerConnection>scm:git:git@github.com:wmaop/wm-aop-util.git</developerConnection>
-	    <tag>HEAD</tag>
-  </scm>
-	
+		<tag>HEAD</tag>
+	</scm>
+
 	<developers>
 		<developer>
 			<name>Richard Tomlinson</name>
@@ -45,31 +46,34 @@
 		<jexl.version>3.0</jexl.version>
 	</properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-jexl3</artifactId>
-			<version>${jexl.version}</version>
-		</dependency>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-jexl3</artifactId>
+				<version>${jexl.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
+	<dependencies>
 		<dependency>
 			<groupId>com.softwareag.webmethods</groupId>
 			<artifactId>wm-isclient</artifactId>
-			<version>${webMethods.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>${log4j.version}</version>
-			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-jexl3</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
