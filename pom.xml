@@ -43,7 +43,7 @@
 	</developers>
 
 	<properties>
-		<jexl.version>3.0</jexl.version>
+		<jexl.version>3.1</jexl.version>
 	</properties>
 
 	<dependencyManagement>

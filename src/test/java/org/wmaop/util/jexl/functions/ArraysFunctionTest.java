@@ -1,6 +1,6 @@
 package org.wmaop.util.jexl.functions;
 
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.jexl3.JexlExpression;
@@ -34,7 +34,7 @@ public class ArraysFunctionTest {
 				"arrays:contains(values, 'or')");
 		MapContext mc = new MapContext();
 		mc.set("values", null);
-		assertNull(expr.evaluate(mc));
+		assertFalse((Boolean) expr.evaluate(mc));
 	}
 
 	@Test
@@ -43,7 +43,7 @@ public class ArraysFunctionTest {
 				"arrays:matches(values, '.*orld')");
 		MapContext mc = new MapContext();
 		mc.set("values", null);
-		assertNull(expr.evaluate(mc));
+		assertFalse((Boolean)expr.evaluate(mc));
 	}
 	@Test
 	public void shouldHandleNullMatch() {
