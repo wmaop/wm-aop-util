@@ -57,7 +57,11 @@ public class IDataJexlContext implements JexlContext {
 				idc.destroy();
 				continue;
 			}
-			IDataUtil.put(idc, encodedName, value.toString());
+			if(value instanceof String[][] || value instanceof String[] || value instanceof String){
+				IDataUtil.put(idc, encodedName, value);
+			}else{
+				IDataUtil.put(idc, encodedName, value.toString());
+			}
 			idc.destroy();
 		}
 	}
